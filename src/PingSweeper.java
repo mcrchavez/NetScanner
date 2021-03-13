@@ -5,21 +5,26 @@ import java.util.ArrayList;
 
 public class PingSweeper {
     private String localHostBase;
+    private boolean verbose;
 
     public PingSweeper(String[] args){
         if(args.length > 0){
             try{
                 this.localHostBase = "";
-                if(args.length == 1 && args[0].equals("-P")){
+                this.verbose = false;
+                if(args.length <=2 && args[0].equals("-P")){
+                    if(args.length == 2 && args[1].equals("-v")){
+                        this.verbose = true;
+                    }
                     String localHost = InetAddress.getLocalHost().getHostAddress();
-                    System.out.println(localHost);
+                    //System.out.println(localHost);
                     String[] subArray = localHost.split("\\.");
                     //System.out.println(subArray.length);
                     //System.out.println(subArray[0]);
                     for(int i = 0;i<subArray.length - 1;i++){
                         this.localHostBase += subArray[i] + ".";
                     }
-                    System.out.println(this.localHostBase);
+                    //System.out.println(this.localHostBase);
                     sweep("192.168.21.");
                 }
 
@@ -64,13 +69,18 @@ public class PingSweeper {
      *
      * @param baseIP provide the baseIP onto which i will be appended up to 255
      */
-    private void sweep(String baseIP){
+    private void sweep(String baseIP, int min, int max){
         LocalDateTime time = LocalDateTime.now();
         System.out.println(String.format("Sweep Started: %s",time.toString()));
         String base = baseIP;
-        for(int i = 0;i<= 255;i++){
+        if(max > 255){
+            System.out.println("Maximum is 255");
+        }
+        for(int i = min;i<= max;i++){
             try{
-                System.out.println(String.format("Scanning %s", baseIP + i));
+                if(this.verbose == true) {
+                    System.out.println(String.format("Scanning %s", baseIP + i));
+                }
                 if( this.ping(baseIP + i) == true){
                     System.out.println(String.format("%s is up Hostname: %s", baseIP + i, this.getName(baseIP + i)));
                 }
@@ -81,6 +91,13 @@ public class PingSweeper {
             }
         }
         System.out.println(String.format("Sweep Completed: %s", time.toString()));
+    }
+
+    private void sweep(String baseIP, int single){
+        this.sweep(baseIP, single, single);
+    }
+    private void sweep(String baseIP){
+        this.sweep(baseIP, 1, 255);
     }
     private String getName(String IP){
         String hostName = null;
