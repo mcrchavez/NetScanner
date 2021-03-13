@@ -8,7 +8,6 @@ public class PortScanner {
     private String targHostName;
     private InetAddress targIP;
     private Socket target;
-
     private ArrayList<Integer> openPorts = new ArrayList<Integer>(0);
 
 
@@ -19,26 +18,26 @@ public class PortScanner {
 
         if(args.length > 0){
             try {
-                if (args.length == 1) {
-                    System.out.println("First reached");
+                if (args.length == 1 && args[0].equals("-Ps")) {
+                    //System.out.println("First reached");
                     targHostName = InetAddress.getLocalHost().getHostName();
                     targIP = InetAddress.getByName(this.targHostName);
                     this.scan();
-                } else if(args[0].equals("-h") && args.length == 2){
+                } else if(args[1].equals("-h") && args.length == 3){
                     //if there are no port specifications
-                    System.out.println("Second Reached");
-                    targHostName = args[1];
+                    //System.out.println("Second Reached");
+                    targHostName = args[2];
                     this.targIP = InetAddress.getByName(targHostName);
                     this.scan();
                 }
-                else if(args[0].equals("-h") && args[2].equals("-p")){
-                    targHostName = args[1];
+                else if(args[1].equals("-h") && args[3].equals("-p")){
+                    targHostName = args[2];
                     this.targIP = InetAddress.getByName(targHostName);
-                    if(args.length == 4){
-                        this.scan(Integer.parseInt(args[3]));
-                    }
                     if(args.length == 5){
-                        this.scan(Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+                        this.scan(Integer.parseInt(args[4]));
+                    }
+                    if(args.length == 6){
+                        this.scan(Integer.parseInt(args[4]), Integer.parseInt(args[5]));
                     }
 
                 }
@@ -48,16 +47,16 @@ public class PortScanner {
             }
             catch (Exception e){
                 System.out.println(e);
-                System.out.println("Invalid Arguement Input");
-                System.out.println("PortScanner -h <hostname/IP>");
+                System.out.println("Invalid Argument Input");
+                System.out.println("NetScanner -Ps -h <hostname/IP>");
                 System.out.println(args.length);
-                System.out.println(args[0]);
+                System.out.println(args[1]);
             }
 
         }
         else{
             System.out.println("Invalid Argument Input");
-            System.out.println("PortScanner -h <hostname/IP>");
+            System.out.println("NetScanner -Ps -h <hostname/IP>");
             System.out.println(args.length);
         }
 
@@ -65,7 +64,7 @@ public class PortScanner {
 
     }
     public void help(){
-        System.out.println("PortScanner -h <hostname/IP>");
+        System.out.println("NetScanner -Ps -h <hostname/IP>");
     }
 
     /**
