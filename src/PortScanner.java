@@ -23,6 +23,7 @@ public class PortScanner {
                     System.out.println("First reached");
                     targHostName = InetAddress.getLocalHost().getHostName();
                     targIP = InetAddress.getByName(this.targHostName);
+                    this.scan();
                 } else if(args[0].equals("-h") && args.length == 2){
                     //if there are no port specifications
                     System.out.println("Second Reached");
