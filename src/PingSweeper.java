@@ -17,9 +17,13 @@ public class PingSweeper {
                     //System.out.println(subArray.length);
                     //System.out.println(subArray[0]);
                     for(int i = 0;i<subArray.length - 1;i++){
-                        baseIP += subArray[i] + ".";
+                        this.baseIP += subArray[i] + ".";
                     }
-                    System.out.println(baseIP);
+                    System.out.println(this.baseIP);
+                    sweep(this.baseIP);
+
+
+
                 }
 
             }
@@ -37,5 +41,39 @@ public class PingSweeper {
             System.out.println(args.length);
         }
 
+    }
+
+    /**
+     *
+     * @param IP provided string to fetch target IP address from
+     * @return returns true if the ping was successful
+     */
+    private boolean ping(String IP){
+        try {
+            InetAddress target = InetAddress.getByName(IP);
+            //timeout for tcp ping
+            if(target.isReachable(5000)) {
+                return true;
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+            System.out.println("Invalid IP Address Provided");
+        }
+        return false;
+    }
+
+    private void sweep(String baseIP){
+        String base = baseIP;
+        for(int i = 0;i<= 255;i++){
+            try{
+                this.ping(baseIP + i);
+            }
+            catch(Exception e){
+                System.out.println("sweep failed");
+                System.out.println(e);
+            }
+
+        }
     }
 }
