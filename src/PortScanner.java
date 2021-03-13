@@ -9,7 +9,7 @@ public class PortScanner {
     private InetAddress targIP;
     private Socket target;
 
-    private ArrayList<Integer> openPorts = new ArrayList<Integer>
+    private ArrayList<Integer> openPorts = new ArrayList<Integer>(0);
 
 
     /**
@@ -81,12 +81,26 @@ public class PortScanner {
                 Socket newSock = new Socket(this.targIP,i);
                 System.out.println(String.format("Port %d open", i));
                 System.out.println("PWN It ;)");
+                this.openPorts.add(i);
             }
             catch(Exception e){
-                System.out.println(e);
+                //System.out.println(e);
                 System.out.println(String.format("Port %d closed", i));
             }
         }
+        System.out.println(String.format("Scan Completed: %s", time.toString()));
+        String portString = "";
+        if(this.openPorts.size() > 0) {
+            for (Integer x : this.openPorts) {
+                portString += x + " ";
+
+            }
+            System.out.println(String.format("Open Ports: %s", portString));
+        }
+        else{
+            System.out.println("No Open Ports Found");
+        }
+
 
     }
 
@@ -103,6 +117,14 @@ public class PortScanner {
      */
     private void scan(){
         scan(0, 65535);
+    }
+
+    /**
+     *
+     * @return the arraylist object with all open ports
+     */
+    public ArrayList<Integer> getOpenPorts(){
+        return this.openPorts;
     }
 
 }
