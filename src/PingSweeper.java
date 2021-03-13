@@ -72,7 +72,7 @@ public class PingSweeper {
             try{
                 System.out.println(String.format("Scanning %s", baseIP + i));
                 if( this.ping(baseIP + i) == true){
-                    System.out.println(String.format("%s is up", baseIP + i));
+                    System.out.println(String.format("%s is up Hostname: %s", baseIP + i, this.getName(baseIP + i)));
                 }
             }
             catch(Exception e){
@@ -81,5 +81,18 @@ public class PingSweeper {
             }
         }
         System.out.println(String.format("Sweep Completed: %s", time.toString()));
+    }
+    private String getName(String IP){
+        String hostName = null;
+        try {
+            InetAddress targ = InetAddress.getByName(IP);
+            hostName = targ.getHostName();
+        }
+        catch(Exception e){
+            System.out.println("getName failed");
+            System.out.println(e);
+        }
+        return hostName;
+
     }
 }
