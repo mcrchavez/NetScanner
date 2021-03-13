@@ -16,7 +16,7 @@ public class PortScanner {
      */
     PortScanner(String[] args){
 
-        if(args.length > 0){
+        if(args.length > 0 && args[0].equals("-Ps")){
             try {
                 if (args.length == 1 && args[0].equals("-Ps")) {
                     //System.out.println("First reached");
@@ -106,10 +106,10 @@ public class PortScanner {
 
     /**
      *
-     * @param max max port to scan
+     * @param port single port to scan
      */
-    private void scan(int max){
-        scan(0, max);
+    private void scan(int port){
+        scan(port, port);
     }
 
     /**
