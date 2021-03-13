@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 
 public class PingSweeper {
-    private String baseIP;
+    private String localHostBase;
 
     public PingSweeper(String[] args){
         if(args.length > 0){
             try{
-                this.baseIP = "";
+                this.localHostBase = "";
                 if(args.length == 1 && args[0].equals("-P")){
                     String localHost = InetAddress.getLocalHost().getHostAddress();
                     System.out.println(localHost);
@@ -17,13 +17,10 @@ public class PingSweeper {
                     //System.out.println(subArray.length);
                     //System.out.println(subArray[0]);
                     for(int i = 0;i<subArray.length - 1;i++){
-                        this.baseIP += subArray[i] + ".";
+                        this.localHostBase += subArray[i] + ".";
                     }
-                    System.out.println(this.baseIP);
-                    sweep(this.baseIP);
-
-
-
+                    System.out.println(this.localHostBase);
+                    sweep("192.168.21.");
                 }
 
             }
@@ -63,17 +60,26 @@ public class PingSweeper {
         return false;
     }
 
+    /**
+     *
+     * @param baseIP provide the baseIP onto which i will be appended up to 255
+     */
     private void sweep(String baseIP){
+        LocalDateTime time = LocalDateTime.now();
+        System.out.println(String.format("Sweep Started: %s",time.toString()));
         String base = baseIP;
         for(int i = 0;i<= 255;i++){
             try{
-                this.ping(baseIP + i);
+                System.out.println(String.format("Scanning %s", baseIP + i));
+                if( this.ping(baseIP + i) == true){
+                    System.out.println(String.format("%s is up", baseIP + i));
+                }
             }
             catch(Exception e){
                 System.out.println("sweep failed");
                 System.out.println(e);
             }
-
         }
+        System.out.println(String.format("Sweep Completed: %s", time.toString()));
     }
 }
