@@ -27,17 +27,17 @@ public class PingSweeper {
                     }
                     String IP = "192.168.21.";
                     //System.out.println(this.localHostBase);
-                    if(this.verbose == true && args.length == 5 && args[3].equals("-r")){
-                        sweep(IP, Integer.parseInt(args[4]));
-                    }
-                    else if(this.verbose == true && args.length == 6 && args[3].equals("-r")){
-                        sweep(IP, Integer.parseInt(args[4]), Integer.parseInt(args[5]));
-                    }
-                    else if(args.length == 4 && args[2].equals("-r")){
+                    if(this.verbose == true && args.length == 4 && args[2].equals("-r")){
                         sweep(IP, Integer.parseInt(args[3]));
                     }
-                    else if(args.length == 5 && args[2].equals("-r")){
+                    else if(this.verbose == true && args.length == 5 && args[3].equals("-r")){
                         sweep(IP, Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+                    }
+                    else if(args.length == 3 && args[1].equals("-r")){
+                        sweep(IP, Integer.parseInt(args[2]));
+                    }
+                    else if(args.length == 4 && args[1].equals("-r")){
+                        sweep(IP, Integer.parseInt(args[2]), Integer.parseInt(args[3]));
                     }
                     else{
                         sweep(IP);
@@ -50,15 +50,15 @@ public class PingSweeper {
             catch(Exception e){
                 System.out.println(e);
                 System.out.println("Invalid Argument Input");
-                System.out.println("NetScanner -P");
-                System.out.println(args.length);
+                //System.out.println("NetScanner -P");
+                //System.out.println(args.length);
             }
 
         }
         else{
             System.out.println("Invalid Argument Input");
-            System.out.println("NetScanner -P");
-            System.out.println(args.length);
+            //System.out.println("NetScanner -P");
+            //System.out.println(args.length);
         }
 
     }
