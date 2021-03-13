@@ -12,8 +12,9 @@ public class PingSweeper {
             try{
                 this.localHostBase = "";
                 this.verbose = false;
-                if(args.length <=2 && args[0].equals("-P")){
-                    if(args.length == 2 && args[1].equals("-v")){
+                if(args.length <=6 && args[0].equals("-P")){
+                    //five elements because of range
+                    if(args.length >=2 && args[1].equals("-v")){
                         this.verbose = true;
                     }
                     String localHost = InetAddress.getLocalHost().getHostAddress();
@@ -24,8 +25,25 @@ public class PingSweeper {
                     for(int i = 0;i<subArray.length - 1;i++){
                         this.localHostBase += subArray[i] + ".";
                     }
+                    String IP = "192.168.21.";
                     //System.out.println(this.localHostBase);
-                    sweep("192.168.21.");
+                    if(this.verbose == true && args.length == 5 && args[3].equals("-r")){
+                        sweep(IP, Integer.parseInt(args[4]));
+                    }
+                    else if(this.verbose == true && args.length == 6 && args[3].equals("-r")){
+                        sweep(IP, Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+                    }
+                    else if(args.length == 4 && args[2].equals("-r")){
+                        sweep(IP, Integer.parseInt(args[3]));
+                    }
+                    else if(args.length == 5 && args[2].equals("-r")){
+                        sweep(IP, Integer.parseInt(args[3]), Integer.parseInt(args[4]));
+                    }
+                    else{
+                        sweep(IP);
+                    }
+
+
                 }
 
             }
