@@ -6,7 +6,12 @@ import java.util.ArrayList;
 public class PingSweeper {
     private String localHostBase;
     private boolean verbose;
+    private ArrayList<String> activeIPs = new ArrayList<String >(0);
 
+    /**
+     *
+     * @param args command arguements
+     */
     public PingSweeper(String[] args){
         if(args.length > 0){
             try{
@@ -25,12 +30,12 @@ public class PingSweeper {
                     for(int i = 0;i<subArray.length - 1;i++){
                         this.localHostBase += subArray[i] + ".";
                     }
-                    String IP = "192.168.21.";
+                    String IP = "192.168.1.";
                     //System.out.println(this.localHostBase);
                     if(this.verbose == true && args.length == 4 && args[2].equals("-r")){
                         sweep(IP, Integer.parseInt(args[3]));
                     }
-                    else if(this.verbose == true && args.length == 5 && args[3].equals("-r")){
+                    else if(this.verbose == true && args.length == 5 && args[2].equals("-r")){
                         sweep(IP, Integer.parseInt(args[3]), Integer.parseInt(args[4]));
                     }
                     else if(args.length == 3 && args[1].equals("-r")){
@@ -68,11 +73,12 @@ public class PingSweeper {
      * @param IP provided string to fetch target IP address from
      * @return returns true if the ping was successful
      */
-    private boolean ping(String IP){
+
+    private boolean ping(String IP, int timeout){
         try {
             InetAddress target = InetAddress.getByName(IP);
             //timeout for tcp ping
-            if(target.isReachable(5000)) {
+            if(target.isReachable(timeout)) {
                 return true;
             }
         }
@@ -81,7 +87,12 @@ public class PingSweeper {
             System.out.println("Invalid IP Address Provided");
         }
         return false;
+
     }
+    private boolean ping(String IP){
+        return ping(IP, 5000);
+    }
+
 
     /**
      *
@@ -101,6 +112,7 @@ public class PingSweeper {
                 }
                 if( this.ping(baseIP + i) == true){
                     System.out.println(String.format("%s is up Hostname: %s", baseIP + i, this.getName(baseIP + i)));
+                    this.activeIPs.add(baseIP + i);
                 }
             }
             catch(Exception e){
@@ -109,6 +121,18 @@ public class PingSweeper {
             }
         }
         System.out.println(String.format("Sweep Completed: %s", time.toString()));
+
+        if(this.activeIPs.size() > 0) {
+            String activeString = "";
+            for (String x : this.activeIPs) {
+                activeString += x + " ";
+
+            }
+            System.out.println(String.format("Active IP Addresses: %s", activeString));
+        }
+        else{
+            System.out.println("No Open Ports Found");
+        }
     }
 
     private void sweep(String baseIP, int single){
