@@ -10,8 +10,8 @@ import picocli.CommandLine.*;
 @Command(name="NetScanner", version = ".01 improved cmdline prototype", mixinStandardHelpOptions = true, description = "Network Enumeration Framework")
 public class main{
 
-    @Command(name="-P", description = "Sweep network for targets using ping protocol")
-    void pingSweepSubCommand(@Option(names={"-t", "--host", "--target"}, description = "Sweeps network for targets using ping protocol", defaultValue = "0") String target){
+    @Command(name="-P", description = "Sweep network for targets using ping protocol",  mixinStandardHelpOptions = true)
+    void pingSweepSubCommand(@Option(names={"-t", "--host", "--target"}, description = "Specify hostname or target IP for sweep", defaultValue = "0") String target){
 
     }
 
