@@ -1,5 +1,7 @@
 # NetScanner
 ## Java program used for network scanning and enumeration  
+[![picocli](https://img.shields.io/badge/picocli-4.6.1-green.svg)](https://github.com/remkop/picocli)
+
 
 
 ### *PingSweeper* 
