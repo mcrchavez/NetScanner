@@ -1,18 +1,21 @@
+import picocli.CommandLine;
+
 import java.net.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import picocli.CommandLine;
+import picocli.CommandLine.*;
 
-
-public class PingSweeper {
+@Command(name="PingSweep")
+public class PingSweeper implements Runnable{
     private String localHostBase;
-    private boolean
     private boolean verbose;
     private ArrayList<String> activeIPs;
 
-    /**
-     *
-     * @param args command arguements
-     */
+    @Override
+    public void run(){
+
+    }
     public PingSweeper(String[] args){
         if(args.length > 0){
             try{
