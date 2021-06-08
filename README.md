@@ -36,6 +36,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+I initially created this project for my own uses in penetration testing and network enumeration. I am planning to implement a verbose and interactive command line enviroment to better visualize network mapping techniques.
+
 <!--[![Product Name Screen Shot][product-screenshot]](https://example.com)-->
 
 
