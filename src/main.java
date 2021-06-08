@@ -1,6 +1,8 @@
-public class main {
-    public static void main(String[] args) {
+import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 
+public class main {
+    public static void main(String[] args) throws InvocationTargetException, InterruptedException {
         if(args.length > 0){
             switch(args[0]){
                 case "-h":
@@ -26,7 +28,5 @@ public class main {
             System.out.print(String.format("-P ping sweeper:\n-v verbose\n-r specify range of ips for ping\n\n" +
                     "-Ps port scanner:\n-h specify target hostname or ip\n-p specify range of ports to query"));
         }
-        PortScanner test = new PortScanner(args);
-        PingSweeper test2 = new PingSweeper(args);
     }
 }

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 public class PingSweeper {
     private String localHostBase;
+    private boolean
     private boolean verbose;
-    private ArrayList<String> activeIPs = new ArrayList<String >(0);
+    private ArrayList<String> activeIPs;
 
     /**
      *
@@ -17,6 +18,7 @@ public class PingSweeper {
             try{
                 this.localHostBase = "";
                 this.verbose = false;
+                this.activeIPs = new ArrayList<String>(0);
                 if(args.length <=6 && args[0].equals("-P")){
                     //five elements because of range
                     if(args.length >=2 && args[1].equals("-v")){
@@ -30,6 +32,7 @@ public class PingSweeper {
                     for(int i = 0;i<subArray.length - 1;i++){
                         this.localHostBase += subArray[i] + ".";
                     }
+                    System.out.println(localHostBase);
                     String IP = "192.168.1.";
                     //System.out.println(this.localHostBase);
                     if(this.verbose == true && args.length == 4 && args[2].equals("-r")){
@@ -123,15 +126,15 @@ public class PingSweeper {
         System.out.println(String.format("Sweep Completed: %s", time.toString()));
 
         if(this.activeIPs.size() > 0) {
-            String activeString = "";
+            String activeString = "\n";
             for (String x : this.activeIPs) {
-                activeString += x + " ";
+                activeString += x + " " + getName(x) + "\n";
 
             }
             System.out.println(String.format("Active IP Addresses: %s", activeString));
         }
         else{
-            System.out.println("No Open Ports Found");
+            System.out.println("No Active Devices Found");
         }
     }
 

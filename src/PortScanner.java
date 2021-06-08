@@ -48,16 +48,16 @@ public class PortScanner {
             catch (Exception e){
                 System.out.println(e);
                 System.out.println("Invalid Argument Input");
-                System.out.println("NetScanner -Ps -h <hostname/IP>");
-                System.out.println(args.length);
-                System.out.println(args[1]);
+                //System.out.println("NetScanner -Ps -h <hostname/IP>");
+                //System.out.println(args.length);
+                //System.out.println(args[1]);
             }
 
         }
         else{
             System.out.println("Invalid Argument Input");
-            System.out.println("NetScanner -Ps -h <hostname/IP>");
-            System.out.println(args.length);
+            //System.out.println("NetScanner -Ps -h <hostname/IP>");
+            //System.out.println(args.length);
         }
 
 
