@@ -59,7 +59,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Clone the repo
+Clone the repo
    ```sh
    git clone https://github.com/mcrchavez/NetScanner.git
    ```
@@ -74,11 +74,11 @@ To get a local copy up and running follow these simple steps.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-1. Enter install directory
+Enter install directory
  ```sh
    cd User\Downloads\NetScanner
    ```
-2. Compile and run with java classpath
+Compile and run with java classpath
  ```sh
    java -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" NetScanner.java --help
    ```
