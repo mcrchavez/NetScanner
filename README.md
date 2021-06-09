@@ -74,7 +74,6 @@ To get a local copy up and running follow these simple steps.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
 1. Enter install directory
  ```sh
    cd User\Downloads\NetScanner
