@@ -76,11 +76,14 @@ Clone the repo
 ## Usage
 Enter install directory
  ```sh
-   cd User\Downloads\NetScanner
+   cd User\Downloads\NetScanner\src
    ```
 Compile and run with java classpath
- ```sh
-   java -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" NetScanner.java --help
+   ```sh
+   javac -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner.java
+   ```
+   ```sh
+   java -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner --help
    ```
 
 
