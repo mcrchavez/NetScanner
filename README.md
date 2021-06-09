@@ -54,7 +54,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* Java 8 or later
+* JVM and JDK 8 or later
 
 
 ### Installation
@@ -74,6 +74,14 @@ To get a local copy up and running follow these simple steps.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+1. Enter install directory
+ ```sh
+   cd User\Downloads\NetScanner
+   ```
+2. Compile and run with java classpath
+ ```sh
+   java -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" NetScanner.java --help
+   ```
 
 
 
