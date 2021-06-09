@@ -1,32 +1,21 @@
-import picocli.CommandLine;
-
 import java.net.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import picocli.CommandLine;
-import picocli.CommandLine.*;
 
-@Command(name="PingSweep")
-public class PingSweeper implements Runnable{
+
+
+
+public class PingSweeper{
+
     private String localHostBase;
     private boolean verbose;
     private ArrayList<String> activeIPs;
 
-    @Override
-    public void run(){
-
-    }
-    public PingSweeper(String[] args){
-        if(args.length > 0){
+    public PingSweeper(String target, int[] range, boolean verbose){
             try{
                 this.localHostBase = "";
-                this.verbose = false;
+                this.verbose = verbose;
                 this.activeIPs = new ArrayList<String>(0);
-                if(args.length <=6 && args[0].equals("-P")){
-                    //five elements because of range
-                    if(args.length >=2 && args[1].equals("-v")){
-                        this.verbose = true;
-                    }
                     String localHost = InetAddress.getLocalHost().getHostAddress();
                     //System.out.println(localHost);
                     String[] subArray = localHost.split("\\.");
@@ -35,29 +24,16 @@ public class PingSweeper implements Runnable{
                     for(int i = 0;i<subArray.length - 1;i++){
                         this.localHostBase += subArray[i] + ".";
                     }
+
                     System.out.println(localHostBase);
-                    String IP = "192.168.1.";
+                    if(!(target=="localhost")) {
+                        this.localHostBase = target;
+                    }
                     //System.out.println(this.localHostBase);
-                    if(this.verbose == true && args.length == 4 && args[2].equals("-r")){
-                        sweep(IP, Integer.parseInt(args[3]));
-                    }
-                    else if(this.verbose == true && args.length == 5 && args[2].equals("-r")){
-                        sweep(IP, Integer.parseInt(args[3]), Integer.parseInt(args[4]));
-                    }
-                    else if(args.length == 3 && args[1].equals("-r")){
-                        sweep(IP, Integer.parseInt(args[2]));
-                    }
-                    else if(args.length == 4 && args[1].equals("-r")){
-                        sweep(IP, Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-                    }
-                    else{
-                        sweep(IP);
-                    }
+                    sweep(this.localHostBase, range[0], range[1]);
 
 
                 }
-
-            }
             catch(Exception e){
                 System.out.println(e);
                 System.out.println("Invalid Argument Input");
@@ -66,13 +42,7 @@ public class PingSweeper implements Runnable{
             }
 
         }
-        else{
-            System.out.println("Invalid Argument Input");
-            //System.out.println("NetScanner -P");
-            //System.out.println(args.length);
-        }
 
-    }
 
     /**
      *
