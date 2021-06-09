@@ -2,17 +2,18 @@ import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
 
 //syntax for compliation/running
-//java -cp "C:\PersonalProjects\NetScanner\picocli-4.6.1.jar" main.java main --font-size=24
+//java -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar" main.java main --font-size=24
 //https://picocli.info/quick-guide.html
+
+
+
 import picocli.CommandLine;
 import picocli.CommandLine.*;
 
 @Command(name="NetScanner", version = ".01 improved cmdline prototype", mixinStandardHelpOptions = true, description = "Network Enumeration Framework")
 public class main{
-
     @Command(name="-P", description = "Sweep network for targets using ping protocol",  mixinStandardHelpOptions = true)
     void pingSweepSubCommand(@Option(names={"-t", "--host", "--target"}, description = "Specify hostname or target IP for sweep", defaultValue = "0") String target){
-
     }
 
 
