@@ -2,7 +2,9 @@
 //java -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar" NetScanner.java main --font-size=24
 //https://picocli.info/quick-guide.html
 
-//Second run after PingSweeper integration in /src/: java -cp "C:\PersonalProjects\NetScanner\src\PingSweeper.java;C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar".; NetScanner -P  -t 192.168.1. -r 80,255 -v
+//Second run after PingSweeper integration in /src/:
+// javac -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar".; NetScanner.java
+// java -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar".; NetScanner -P -t 192.168.1
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
