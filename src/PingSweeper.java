@@ -14,29 +14,27 @@ public class PingSweeper{
                 this.localHostBase = "";
                 this.verbose = verbose;
                 this.activeIPs = new ArrayList<String>(0);
+
+                if(target.equals("localhost")){
+                    //System.out.println("First reached");
                     String localHost = InetAddress.getLocalHost().getHostAddress();
-                    //System.out.println(localHost);
                     String[] subArray = localHost.split("\\.");
-                    //System.out.println(subArray.length);
-                    //System.out.println(subArray[0]);
                     for(int i = 0;i<subArray.length - 1;i++){
                         this.localHostBase += subArray[i] + ".";
                     }
-
-                    System.out.println(localHostBase);
-                    if(!(target=="localhost")) {
-                        this.localHostBase = target;
-                    }
-                    //System.out.println(this.localHostBase);
                     sweep(this.localHostBase, range[0], range[1]);
-
-
+                } else if (range.length == 1){
+                    this.localHostBase = target;
+                    this.sweep(this.localHostBase, range[0]);
+                }
+                else{
+                    this.localHostBase = target;
+                    this.sweep(this.localHostBase, range[0], range[1]);
+                }
                 }
             catch(Exception e){
                 System.out.println(e);
                 System.out.println("Invalid Argument Input");
-                //System.out.println("NetScanner -P");
-                //System.out.println(args.length);
             }
 
         }

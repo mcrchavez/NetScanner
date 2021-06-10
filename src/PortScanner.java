@@ -8,60 +8,36 @@ public class PortScanner {
     private InetAddress targIP;
     private Socket target;
     private ArrayList<Integer> openPorts = new ArrayList<Integer>(0);
+    private boolean verbose;
 
 
-    /**
-     * Initialize Pinger Object with the command line args
-     */
-    PortScanner(String[] args){
-
-        if(args.length > 0 && args[0].equals("-Ps")){
+    PortScanner(String targetIP, int[] portRange, boolean verbose){
             try {
-                if (args.length == 1 && args[0].equals("-Ps")) {
+                this.verbose = verbose;
+                if (targetIP.equals("localhost")){
                     //System.out.println("First reached");
                     targHostName = InetAddress.getLocalHost().getHostName();
                     targIP = InetAddress.getByName(this.targHostName);
                     this.scan();
-                } else if(args[1].equals("-h") && args.length == 3){
-                    //if there are no port specifications
-                    //System.out.println("Second Reached");
-                    targHostName = args[2];
-                    this.targIP = InetAddress.getByName(targHostName);
-                    this.scan();
-                }
-                else if(args[1].equals("-h") && args[3].equals("-p")){
-                    targHostName = args[2];
-                    this.targIP = InetAddress.getByName(targHostName);
-                    if(args.length == 5){
-                        this.scan(Integer.parseInt(args[4]));
-                    }
-                    if(args.length == 6){
-                        this.scan(Integer.parseInt(args[4]), Integer.parseInt(args[5]));
-                    }
-
+                } else if (portRange.length == 1){
+                    targHostName = targetIP;
+                    targIP = InetAddress.getByName(this.targHostName);
+                    this.scan(portRange[0]);
                 }
                 else{
-                    throw new Exception();
+                    targHostName = targetIP;
+                    targIP = InetAddress.getByName(this.targHostName);
+                    this.scan(portRange[0], portRange[1]);
                 }
             }
             catch (Exception e){
                 System.out.println(e);
                 System.out.println("Invalid Argument Input");
-                //System.out.println("NetScanner -Ps -h <hostname/IP>");
-                //System.out.println(args.length);
-                //System.out.println(args[1]);
             }
 
         }
-        else{
-            System.out.println("Invalid Argument Input");
-            //System.out.println("NetScanner -Ps -h <hostname/IP>");
-            //System.out.println(args.length);
-        }
 
 
-
-    }
     public void help(){
         System.out.println("NetScanner -Ps -h <hostname/IP>");
     }
