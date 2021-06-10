@@ -31,7 +31,6 @@ public class PortScanner {
                 }
             }
             catch (Exception e){
-                System.out.println(e);
                 System.out.println("Invalid Argument Input");
             }
 

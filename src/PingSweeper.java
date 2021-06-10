@@ -33,7 +33,6 @@ public class PingSweeper{
                 }
                 }
             catch(Exception e){
-                System.out.println(e);
                 System.out.println("Invalid Argument Input");
             }
 
@@ -55,7 +54,6 @@ public class PingSweeper{
             }
         }
         catch(Exception e){
-            System.out.println(e);
             System.out.println("Invalid IP Address Provided");
         }
         return false;
@@ -89,7 +87,6 @@ public class PingSweeper{
             }
             catch(Exception e){
                 System.out.println("sweep failed");
-                System.out.println(e);
             }
         }
         System.out.println(String.format("Sweep Completed: %s", time.toString()));
@@ -121,7 +118,6 @@ public class PingSweeper{
         }
         catch(Exception e){
             System.out.println("getName failed");
-            System.out.println(e);
         }
         return hostName;
 
