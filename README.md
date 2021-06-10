@@ -83,7 +83,7 @@ Compile and run with java classpath
    javac -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner.java
    ```
    ```cmd
-   java -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner --help
+   java -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner --help
    ```
 Enumerate through network and begin mapping
  ```cmd
