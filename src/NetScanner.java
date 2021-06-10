@@ -10,7 +10,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
-@Command(name="NetScanner", version = ".01 improved cmdline prototype", mixinStandardHelpOptions = true, description = "Network Enumeration Framework")
+@Command(name="NetScanner", version = ".1 improved cmdline prototype", mixinStandardHelpOptions = true, description = "Network Enumeration Framework")
 public class NetScanner extends Thread{
     private static int scanLocation;
     private static int choice;
