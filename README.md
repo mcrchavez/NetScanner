@@ -75,15 +75,45 @@ Clone the repo
 <!-- USAGE EXAMPLES -->
 ## Usage
 Enter install directory
- ```sh
+ ```cmd
    cd User\Downloads\NetScanner\src
    ```
 Compile and run with java classpath
-   ```sh
+   ```cmd
    javac -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner.java
    ```
-   ```sh
+   ```cmd
    java -cp "C:\PersonalProjects\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner --help
+   ```
+Enumerate through network and begin mapping
+ ```cmd
+javac -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner -P -t 192.168.1. -v -r 100 105
+
+Sweep Started: 2021-06-10T16:07:01.067076100
+Scanning 192.168.1.100
+Scanning 192.168.1.101
+Scanning 192.168.1.102
+192.168.1.102 is up Hostname: DeviceName.router.domain
+Scanning 192.168.1.103
+Scanning 192.168.1.104
+Scanning 192.168.1.105
+Sweep Completed: 2021-06-10T16:07:01.067076100
+Active IP Addresses:
+192.168.1.102 DeviceName.router.domain
+   ```
+   
+   ```cmd
+   javac -cp "User\Downloads\NetScanner\lib\picocli-4.6.1.jar" .; NetScanner -Ps -t 192.168.1.102 -v -r 79 81
+
+   Scan Started: 2021-06-10T16:15:05.277929400
+   Scanning 192.168.1.102
+   Port 79 closed
+   Port 80 open
+   PWN It ;)
+   Port 81 closed
+   Scan Completed: 2021-06-10T16:15:05.277929400
+   Open Ports: 80
+
    ```
 
 
